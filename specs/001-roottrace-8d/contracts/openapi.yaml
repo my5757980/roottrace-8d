@@ -1,0 +1,202 @@
+openapi: 3.1.0
+info:
+  title: RootTrace 8D API
+  version: 1.0.0
+  description: >
+    JSON API behind the RootTrace 8D web app. There is no authentication; a case is reachable
+    only through its unguessable id. Errors use {"error": {"code", "message", "details"?}}.
+servers:
+  - url: /
+paths:
+  /api/health:
+    get:
+      summary: Liveness and provider status
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, enum: [ok] }
+                  mode: { type: string, enum: [live, mock] }
+                  provider: { type: string }
+                  models: { type: object, properties: { text: { type: string }, vision: { type: string } } }
+                  cached_run_available: { type: boolean }
+                  version: { type: string }
+  /api/cases/sample:
+    post:
+      summary: Create a new case from the bundled sample
+      responses:
+        "201":
+          description: Case created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CaseView" }
+  /api/cases:
+    post:
+      summary: Create a custom case (multipart upload)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [process_csv, characteristic, value_column]
+              properties:
+                complaint_text: { type: string, maxLength: 20000 }
+                complaint_file: { type: string, format: binary, description: ".txt or .eml, at most 10 MB" }
+                images: { type: array, maxItems: 3, items: { type: string, format: binary } }
+                process_csv: { type: string, format: binary }
+                maintenance_csv: { type: string, format: binary }
+                characteristic: { type: string }
+                unit: { type: string, default: mm }
+                lsl: { type: number }
+                usl: { type: number }
+                target: { type: number }
+                value_column: { type: string }
+                timestamp_column: { type: string, default: timestamp }
+                lot_column: { type: string, default: lot }
+      responses:
+        "201":
+          description: Case created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CaseView" }
+        "413": { $ref: "#/components/responses/Error" }
+        "422": { $ref: "#/components/responses/Error" }
+  /api/cases/{case_id}:
+    get:
+      summary: Full case view (inputs preview, analysis, report)
+      parameters: [ { $ref: "#/components/parameters/CaseId" } ]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CaseView" }
+        "404": { $ref: "#/components/responses/Error" }
+  /api/cases/{case_id}/images/{index}:
+    get:
+      summary: Normalized JPEG of an input image
+      parameters:
+        - { $ref: "#/components/parameters/CaseId" }
+        - { name: index, in: path, required: true, schema: { type: integer, minimum: 0, maximum: 2 } }
+      responses:
+        "200": { description: JPEG bytes, content: { image/jpeg: {} } }
+        "404": { $ref: "#/components/responses/Error" }
+  /api/cases/{case_id}/analyze:
+    post:
+      summary: Start an analysis run (returns immediately)
+      parameters: [ { $ref: "#/components/parameters/CaseId" } ]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mode: { type: string, enum: [live, cached], default: live, description: "cached is allowed only for the sample case" }
+      responses:
+        "202":
+          description: Run started
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Analysis" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+        "422": { $ref: "#/components/responses/Error" }
+        "429": { $ref: "#/components/responses/Error" }
+  /api/cases/{case_id}/analysis:
+    get:
+      summary: Poll the current analysis state (steps, partial results, trace)
+      parameters: [ { $ref: "#/components/parameters/CaseId" } ]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Analysis" }
+        "404": { $ref: "#/components/responses/Error" }
+  /api/cases/{case_id}/report/sections/{section_id}:
+    patch:
+      summary: Edit, approve or unapprove one 8D section
+      parameters:
+        - { $ref: "#/components/parameters/CaseId" }
+        - { name: section_id, in: path, required: true, schema: { type: string, enum: [D1, D2, D3, D4, D5, D6, D7, D8] } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content: { type: string, maxLength: 8000 }
+                approved: { type: boolean }
+                reviewer: { type: string, maxLength: 80 }
+      responses:
+        "200":
+          description: Updated section
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ReportSection" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+        "422": { $ref: "#/components/responses/Error" }
+components:
+  parameters:
+    CaseId:
+      name: case_id
+      in: path
+      required: true
+      schema: { type: string, pattern: "^[A-Za-z0-9_-]{16,64}$" }
+  responses:
+    Error:
+      description: Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                required: [code, message]
+                properties:
+                  code: { type: string }
+                  message: { type: string }
+                  details: { type: array, items: { type: string } }
+  schemas:
+    CaseView:
+      type: object
+      description: "Case summary + inputs preview + latest Analysis + Report (see data-model.md)."
+      properties:
+        id: { type: string }
+        is_sample: { type: boolean }
+        title: { type: string }
+        spec: { type: object }
+        dataset_summary: { type: object }
+        complaint_text: { type: string }
+        images: { type: array, items: { type: object, properties: { index: { type: integer }, filename: { type: string }, url: { type: string } } } }
+        events: { type: array, items: { type: object } }
+        analysis: { oneOf: [ { $ref: "#/components/schemas/Analysis" }, { type: "null" } ] }
+        report: { oneOf: [ { type: object }, { type: "null" } ] }
+    Analysis:
+      type: object
+      description: "See data-model.md#analysis. Steps carry status/source; results fill in as steps finish."
+      properties:
+        run_id: { type: string }
+        mode: { type: string, enum: [live, cached, mock] }
+        status: { type: string, enum: [running, done, failed] }
+        steps: { type: array, items: { type: object } }
+        trace: { type: array, items: { type: object } }
+    ReportSection:
+      type: object
+      properties:
+        id: { type: string }
+        title: { type: string }
+        content: { type: string }
+        evidence: { type: array, items: { type: string } }
+        status: { type: string, enum: [ai_draft, edited, approved, needs_reapproval] }
+        approved_by: { type: [string, "null"] }
+        approved_at: { type: [string, "null"], format: date-time }
+        untraceable_numbers: { type: array, items: { type: string } }
