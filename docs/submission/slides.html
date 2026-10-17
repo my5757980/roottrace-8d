@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RootTrace 8D: pitch deck</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #1f2937; font-family: "Segoe UI", system-ui, Arial, sans-serif; color: #111827; }
+  .slide { width: 1280px; height: 720px; margin: 20px auto; background: #fff; position: relative; overflow: hidden;
+           padding: 56px 72px; page-break-after: always; box-shadow: 0 6px 30px rgba(0,0,0,.35); }
+  .dark { background: #0b1220; color: #f9fafb; }
+  h1 { font-size: 54px; margin: 0 0 10px; letter-spacing: -.5px; }
+  h2 { font-size: 38px; margin: 0 0 26px; letter-spacing: -.3px; }
+  h2 small { display: block; font-size: 18px; font-weight: 500; color: #0f766e; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .dark h2 small { color: #5eead4; }
+  p, li { font-size: 23px; line-height: 1.45; }
+  ul { padding-left: 26px; margin: 0; }
+  li { margin-bottom: 10px; }
+  .muted { color: #6b7280; }
+  .dark .muted { color: #9ca3af; }
+  .accent { color: #0f766e; }
+  .red { color: #b91c1c; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .box { border: 2px solid #e5e7eb; border-radius: 16px; padding: 20px 22px; }
+  .box h3 { margin: 0 0 8px; font-size: 22px; }
+  .box p { font-size: 19px; margin: 0; }
+  .big { font-size: 64px; font-weight: 800; line-height: 1; }
+  .kpi { border-radius: 16px; background: #f0fdfa; border: 2px solid #99f6e4; padding: 18px 20px; }
+  .kpi .l { font-size: 18px; color: #374151; margin-top: 6px; }
+  table { border-collapse: collapse; width: 100%; font-size: 19px; }
+  td, th { border-bottom: 1px solid #e5e7eb; padding: 9px 10px; text-align: left; }
+  th { color: #6b7280; font-size: 15px; text-transform: uppercase; letter-spacing: .6px; }
+  .tag { display: inline-block; font-size: 14px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+  .ai { background: #fee2e2; color: #e11d2e; }
+  .det { background: #ecfeff; color: #0e7490; }
+  .foot { position: absolute; left: 72px; right: 72px; bottom: 26px; font-size: 14px; color: #9ca3af; display: flex; justify-content: space-between; }
+  img.full { width: 100%; border-radius: 14px; }
+  .pill { display: inline-flex; gap: 10px; align-items: center; border: 2px solid #e11d2e; border-radius: 999px; padding: 8px 18px; font-weight: 700; }
+  .pill i { width: 14px; height: 14px; border-radius: 50%; background: #e11d2e; display: inline-block; }
+  @media print { body { background: #fff; } .slide { margin: 0; box-shadow: none; } }
+</style>
+</head>
+<body>
+
+<section class="slide dark">
+  <div style="display:flex;align-items:center;gap:18px;margin-top:40px">
+    <div style="width:78px;height:78px;border-radius:18px;background:#0f766e;display:grid;place-items:center;font-size:34px;font-weight:800">RT</div>
+    <h1 style="font-size:72px;margin:0">RootTrace <span style="color:#5eead4">8D</span></h1>
+  </div>
+  <p style="font-size:34px;color:#ccfbf1;margin-top:26px">From customer complaint to evidence-backed 8D report in minutes</p>
+  <p class="muted" style="font-size:24px">Deterministic SPC + AI on AMD + engineer sign-off</p>
+  <div style="margin-top:60px" class="pill"><i></i> AI inference on AMD Instinct GPUs</div>
+  <div class="foot"><span>AMD Developer Hackathon · ACT III · Track 1 Intelligent Industry</span><span>MIT · sample data fictional</span></div>
+</section>
+
+<section class="slide">
+  <h2><small>The problem</small>A rejected part starts a race against the clock</h2>
+  <div class="grid2">
+    <ul>
+      <li>The customer demands <b>containment within 24 h</b> and an <b>8D report</b> within days</li>
+      <li>The evidence is scattered: the complaint email, photos, SPC sheets, the maintenance log</li>
+      <li>Finding <b>when</b> and <b>why</b> the process changed is manual detective work</li>
+      <li>Containment is often guessed from the lots the customer named, so more defective parts escape</li>
+    </ul>
+    <div class="box" style="align-self:start">
+      <h3 class="red">Cost of getting it wrong</h3>
+      <p>Line stops at the customer, sorting at both plants, chargebacks, a lower supplier rating. Each 8D also takes hours to days of engineer time.</p>
+    </div>
+  </div>
+  <div class="foot"><span>RootTrace 8D</span><span>2</span></div>
+</section>
+
+<section class="slide">
+  <h2><small>The user</small>Supplier quality engineers</h2>
+  <div class="grid3">
+    <div class="box"><h3>Who</h3><p>Quality engineers at Tier-1 and Tier-2 automotive and industrial component suppliers (IATF 16949 plants)</p></div>
+    <div class="box"><h3>Job to be done</h3><p>Contain fast, prove the root cause with data, and write an 8D the customer accepts</p></div>
+    <div class="box"><h3>Today</h3><p>Excel, paper SPC sheets, email threads and a blank 8D template</p></div>
+  </div>
+  <p style="margin-top:34px">"I don't need a chatbot. I need to know <b>which lots to stop</b> and <b>why</b>, and I need numbers I can defend in front of the customer."</p>
+  <div class="foot"><span>RootTrace 8D</span><span>3</span></div>
+</section>
+
+<section class="slide">
+  <h2><small>The solution</small>One click, eight steps, every claim cited</h2>
+  <table>
+    <tr><th>#</th><th>Step</th><th>Engine</th></tr>
+    <tr><td>1–3</td><td>Read inputs → <b>SPC</b> (I-MR limits, Western Electric rules, Cp/Cpk, change point, containment) → correlate with the maintenance log</td><td><span class="tag det">deterministic</span></td></tr>
+    <tr><td>4</td><td>Extract complaint facts with verbatim quotes</td><td><span class="tag ai">AI on AMD</span></td></tr>
+    <tr><td>5</td><td>Classify the defect photo (vision)</td><td><span class="tag ai">AI on AMD</span></td></tr>
+    <tr><td>6</td><td>Rank 6M root-cause hypotheses with supporting and contradicting evidence</td><td><span class="tag ai">AI on AMD</span></td></tr>
+    <tr><td>7</td><td>Draft the 8D, D1–D8. D3 containment is fixed to the computed suspect lots</td><td><span class="tag ai">AI on AMD</span></td></tr>
+    <tr><td>8</td><td>Number-trace check: flags any figure not found in the evidence</td><td><span class="tag det">deterministic</span></td></tr>
+  </table>
+  <p class="muted" style="margin-top:18px">Then the engineer edits and approves each section and exports a PDF. Unapproved sections print as DRAFT.</p>
+  <div class="foot"><span>RootTrace 8D</span><span>4</span></div>
+</section>
+
+<section class="slide">
+  <h2><small>Live demo · sample case</small>The customer named 2 lots. The data says 11.</h2>
+  <div class="grid2">
+    <img class="full" src="cover.png" alt="RootTrace 8D sample analysis">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:start">
+      <div class="kpi"><div class="big">10′</div><div class="l">shift detected 10 min after the boring-bar change</div></div>
+      <div class="kpi"><div class="big">11</div><div class="l">suspect lots to contain (customer named 2)</div></div>
+      <div class="kpi"><div class="big">2.12→−0.14</div><div class="l" style="margin-top:10px">Cpk before → after the shift</div></div>
+      <div class="kpi"><div class="big">100%</div><div class="l">numbers in the draft traced to evidence</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>RootTrace 8D</span><span>5</span></div>
+</section>
+
+<section class="slide dark">
+  <h2><small>How it runs on AMD</small>One client, AMD endpoints, full trace</h2>
+  <div class="grid2">
+    <ul>
+      <li>An OpenAI-compatible client pointed at the <b>AMD TokenFactory</b> API, or at <b>vLLM on AMD Instinct MI300X</b> (ROCm, AMD Developer Cloud)</li>
+      <li>A vision step on a separate AMD endpoint, with <b>Gemma</b> preferred</li>
+      <li>Respects gateway limits: 8 concurrent requests, a 20 requests/min budget, Retry-After and backoff</li>
+      <li>A recorded AMD run keeps the demo green under load, clearly labeled</li>
+    </ul>
+    <div class="box" style="border-color:#1f2a44;background:#111a2e">
+      <h3 style="color:#5eead4">AMD inference trace, shown in the UI</h3>
+      <p style="color:#e5e7eb">For every AI step: provider · model · live/cached · latency · tokens in/out · attempts. Judges and users can see exactly what ran on AMD.</p>
+    </div>
+  </div>
+  <div class="foot"><span>RootTrace 8D</span><span>6</span></div>
+</section>
+
+<section class="slide">
+  <h2><small>Trust by design</small>An AI draft the engineer can defend</h2>
+  <div class="grid3">
+    <div class="box"><h3>Evidence IDs</h3><p>Every fact gets an ID (S4, L6, P2…). Hypotheses and sections must cite them, and invented IDs are dropped.</p></div>
+    <div class="box"><h3>Numbers are computed</h3><p>SPC numbers come from code. A trace check flags any number the AI wrote that is not in the evidence.</p></div>
+    <div class="box"><h3>Human sign-off</h3><p>Each section goes from AI draft to edited to approved. An edit after approval needs re-approval, and DRAFT is watermarked on export.</p></div>
+  </div>
+  <p style="margin-top:30px">Uncertainty is shown: confidence levels, contradicting evidence (for example, the coolant dip came <b>32 h after</b> the shift), and "not stated" facts.</p>
+  <div class="foot"><span>RootTrace 8D</span><span>7</span></div>
+</section>
+
+<section class="slide">
+  <h2><small>Market & business model</small>Every certified supplier plant writes 8Ds</h2>
+  <div class="grid2">
+    <ul>
+      <li><b>Beachhead:</b> automotive Tier-1 and Tier-2 plants (IATF 16949), then industrial and aerospace suppliers</li>
+      <li><b>Pricing:</b> SaaS per plant per month. An on-premises edition runs on the plant's own AMD Instinct or Ryzen AI hardware for data-sensitive customers</li>
+      <li><b>Expansion:</b> quality engineer → plant quality manager → group-wide supplier quality</li>
+    </ul>
+    <div class="box">
+      <h3>Sizing (assumptions to validate)</h3>
+      <p>SAM ≈ plants × price × 12. For example, 10,000 EU + NA supplier plants × €400/month ≈ <b>€48M ARR</b>. Value per plant: fewer escapes and engineer hours saved on every 8D.</p>
+    </div>
+  </div>
+  <div class="foot"><span>RootTrace 8D</span><span>8</span></div>
+</section>
+
+<section class="slide">
+  <h2><small>Competition</small>Why RootTrace wins</h2>
+  <table>
+    <tr><th></th><th>QMS suites</th><th>SPC software</th><th>Generic AI chat</th><th class="accent">RootTrace 8D</th></tr>
+    <tr><td>Finds the shift and the suspect lots</td><td>✗</td><td>charts only</td><td>✗</td><td class="accent">✓ computed</td></tr>
+    <tr><td>Drafts the 8D narrative</td><td>template</td><td>✗</td><td>✓ but invents numbers</td><td class="accent">✓ evidence-cited</td></tr>
+    <tr><td>Reads photos and complaint emails</td><td>✗</td><td>✗</td><td>partly</td><td class="accent">✓</td></tr>
+    <tr><td>Human approval and audit trail</td><td>✓</td><td>✗</td><td>✗</td><td class="accent">✓</td></tr>
+    <tr><td>Runs on your own AMD hardware</td><td>–</td><td>–</td><td>✗</td><td class="accent">✓</td></tr>
+  </table>
+  <div class="foot"><span>RootTrace 8D</span><span>9</span></div>
+</section>
+
+<section class="slide dark">
+  <h2><small>Roadmap & team</small>Next 90 days</h2>
+  <div class="grid2">
+    <ul>
+      <li>MES and QMS connectors for live SPC feeds</li>
+      <li>Multi-characteristic and subgrouped charts</li>
+      <li>A library of past 8Ds to detect recurring causes</li>
+      <li>Export to customer supplier-portal formats</li>
+      <li>Pilot with 2–3 supplier plants</li>
+    </ul>
+    <div class="box" style="border-color:#1f2a44;background:#111a2e">
+      <h3 style="color:#5eead4">Team</h3>
+      <p style="color:#e5e7eb">[Your name] · builder<br>Built with Spec-Driven Development: constitution → spec → plan → tasks → implementation</p>
+    </div>
+  </div>
+  <div class="foot"><span>RootTrace 8D · github.com/&lt;you&gt;/roottrace-8d</span><span>Thank you</span></div>
+</section>
+
+</body>
+</html>
