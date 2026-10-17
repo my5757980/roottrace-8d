@@ -248,10 +248,15 @@ class LLMClient:
             completion_tokens += int(usage.get("completion_tokens") or 0)
             model_name = data.get("model") or model_name
             try:
-                message = (data.get("choices") or [{}])[0].get("message") or {}
+                choice = (data.get("choices") or [{}])[0]
+                message = choice.get("message") or {}
                 content = message.get("content") or ""
-                if not content.strip() and message.get("reasoning"):
-                    content = str(message.get("reasoning"))
+                if isinstance(content, list):  # some servers return content parts
+                    content = "".join(p.get("text", "") for p in content if isinstance(p, dict))
+                if not content.strip():
+                    content = str(message.get("reasoning_content") or message.get("reasoning") or "")
+                if not content.strip() and choice.get("finish_reason") == "length":
+                    raise ValueError("reply was cut off by max_tokens before any answer was produced")
                 parsed = schema.model_validate(extract_json(content))
                 return parsed, trace()
             except (ValueError, ValidationError, AttributeError, IndexError) as exc:

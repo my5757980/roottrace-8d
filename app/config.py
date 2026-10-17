@@ -119,7 +119,7 @@ def load_settings() -> Settings:
         llm_mode_setting=mode,
         max_concurrency=max(1, _int("LLM_MAX_CONCURRENCY", 8)),
         max_rpm=max(1, _int("LLM_MAX_RPM", 20)),
-        timeout_s=max(5.0, _float("LLM_TIMEOUT_S", 90.0)),
+        timeout_s=max(5.0, _float("LLM_TIMEOUT_S", 120.0)),
         max_attempts=max(1, _int("LLM_MAX_ATTEMPTS", 3)),
         reasoning_effort=effort.lower() if effort else None,
         case_ttl_s=max(60, _int("CASE_TTL_S", 7200)),
