@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1220">
+  <title>RootTrace 8D: complaint to evidence-backed 8D</title>
+  <meta name="description" content="RootTrace 8D turns a customer quality complaint into an evidence-backed 8D report draft in minutes, with AI inference on AMD.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f766e'/%3E%3Ctext x='16' y='21' font-size='14' text-anchor='middle' fill='white' font-family='Arial' font-weight='700'%3E8D%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 17-5-5-9 8"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 13l2 2 4-4"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+  <symbol id="i-printer" viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2 21h20z"/><path d="M12 10v4M12 18h.01"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-loader" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/></symbol>
+  <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+</svg>
+
+<a class="skip" href="#content">Skip to results</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/" aria-label="RootTrace 8D home">
+      <span class="logo" aria-hidden="true">RT</span>
+      <span class="brand-text">
+        <span class="name">RootTrace <b>8D</b></span>
+        <span class="tagline">Complaint → evidence-backed 8D in minutes</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#cardSpc">Analysis</a>
+      <a href="#cardHyp">Root cause</a>
+      <a href="#cardReport">8D report</a>
+      <a href="#cardTrace">AMD trace</a>
+    </nav>
+    <div class="amd" id="amdBadge" title="Where the AI steps run" role="status">
+      <span class="dot" aria-hidden="true"></span><span class="amd-text" id="amdText">Connecting…</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero" aria-label="How RootTrace 8D works">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <h1>From customer complaint to an evidence-backed 8D report in minutes</h1>
+      <p>Built for supplier quality engineers. Statistics are computed, AI runs on AMD, and the engineer approves every section.</p>
+    </div>
+    <ol class="flow">
+      <li><span class="flow-ico"><svg class="icon"><use href="#i-file"/></svg></span><span><b>Complaint &amp; data</b><small>email · photo · SPC · log</small></span></li>
+      <li><span class="flow-ico"><svg class="icon"><use href="#i-activity"/></svg></span><span><b>SPC</b><small>deterministic, no AI</small></span></li>
+      <li class="amdstep"><span class="flow-ico"><svg class="icon"><use href="#i-cpu"/></svg></span><span><b>AI on AMD</b><small>facts · vision · 6M</small></span></li>
+      <li><span class="flow-ico"><svg class="icon"><use href="#i-clipboard"/></svg></span><span><b>8D draft</b><small>D1–D8, cited</small></span></li>
+      <li><span class="flow-ico"><svg class="icon"><use href="#i-shield"/></svg></span><span><b>Engineer approves</b><small>edit · sign · PDF</small></span></li>
+    </ol>
+  </div>
+</section>
+
+<main class="layout">
+  <aside class="side" aria-label="Case and run controls">
+    <div class="sticky">
+      <section class="panel case" id="casePanel" aria-live="polite"><div class="skeleton-block"></div></section>
+      <section class="panel run" id="runPanel">
+        <div class="run-actions" id="runActions">
+          <button id="btnAnalyze" class="btn primary lg" disabled><svg class="icon"><use href="#i-play"/></svg><span class="lbl">Analyze complaint on AMD</span></button>
+          <button id="btnCached" class="btn secondary" disabled><svg class="icon"><use href="#i-zap"/></svg><span>Replay recorded AMD run</span></button>
+          <div class="btn-row two">
+            <button id="btnNew" class="btn ghost"><svg class="icon"><use href="#i-upload"/></svg><span>Your own case</span></button>
+            <button id="btnSample" class="btn ghost" hidden><svg class="icon"><use href="#i-back"/></svg><span>Sample case</span></button>
+          </div>
+        </div>
+        <div class="progress" id="progress" hidden><div class="progress-bar"><span id="progressFill"></span></div><span class="progress-label" id="progressLabel"></span></div>
+        <ol class="steps" id="steps" aria-live="polite"></ol>
+        <div class="kpis" id="kpis"></div>
+      </section>
+    </div>
+  </aside>
+
+  <section class="content" id="content" tabindex="-1">
+    <div class="notice" id="notice" hidden></div>
+    <article class="card" id="cardFacts"></article>
+    <article class="card" id="cardDefect"></article>
+    <article class="card wide" id="cardSpc"></article>
+    <article class="card" id="cardEvents"></article>
+    <article class="card" id="cardHyp"></article>
+    <article class="card wide" id="cardReport"></article>
+    <article class="card wide" id="cardTrace"></article>
+    <article class="card wide" id="cardEvidence"></article>
+  </section>
+</main>
+
+<div class="mobile-bar" id="mobileBar" hidden>
+  <button id="btnAnalyzeMobile" class="btn primary"><svg class="icon"><use href="#i-play"/></svg><span class="lbl">Analyze on AMD</span></button>
+  <button id="btnCachedMobile" class="btn secondary icon-only" aria-label="Replay recorded AMD run"><svg class="icon"><use href="#i-zap"/></svg></button>
+</div>
+
+<dialog id="newCaseDialog" aria-labelledby="newCaseTitle">
+  <form id="newCaseForm" method="dialog">
+    <div class="dialog-head">
+      <div>
+        <h2 id="newCaseTitle">Analyze your own case</h2>
+        <p>Files stay in memory for your session only (10 MB each). The process CSV needs a timestamp column, a lot column and a numeric measurement column.</p>
+      </div>
+      <button type="button" class="btn ghost icon-only" id="newCaseClose" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="dialog-body">
+      <fieldset>
+        <legend>Complaint</legend>
+        <label class="field full">Complaint text<textarea name="complaint_text" placeholder="Paste the customer email…"></textarea></label>
+        <label class="field">…or complaint file (.txt / .eml)<input type="file" name="complaint_file" accept=".txt,.eml,text/plain,message/rfc822"></label>
+        <label class="field">Defect photos (up to 3, JPG/PNG)<input type="file" name="images" accept="image/jpeg,image/png" multiple></label>
+      </fieldset>
+      <fieldset>
+        <legend>Process data</legend>
+        <label class="field">Process data CSV *<input type="file" name="process_csv" accept=".csv,text/csv" required></label>
+        <label class="field">Maintenance / shift log CSV<input type="file" name="maintenance_csv" accept=".csv,text/csv"></label>
+        <label class="field">Characteristic *<input name="characteristic" value="Bore diameter" required></label>
+        <label class="field">Measurement column *<input name="value_column" value="bore_diameter_mm" required></label>
+        <label class="field">Timestamp column<input name="timestamp_column" value="timestamp"></label>
+        <label class="field">Lot column<input name="lot_column" value="lot"></label>
+      </fieldset>
+      <fieldset>
+        <legend>Specification</legend>
+        <label class="field">LSL<input name="lsl" type="number" step="any" inputmode="decimal" placeholder="42.000"></label>
+        <label class="field">USL<input name="usl" type="number" step="any" inputmode="decimal" placeholder="42.025"></label>
+        <label class="field">Target<input name="target" type="number" step="any" inputmode="decimal"></label>
+        <label class="field">Unit<input name="unit" value="mm"></label>
+      </fieldset>
+      <div class="errors" id="newCaseErrors" role="alert"></div>
+    </div>
+    <div class="dialog-foot">
+      <button type="button" class="btn ghost" id="newCaseCancel">Cancel</button>
+      <button type="submit" class="btn primary" id="newCaseSubmit"><svg class="icon"><use href="#i-upload"/></svg><span>Create case</span></button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toasts" id="toasts" aria-live="assertive"></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span><b>RootTrace 8D</b> · AMD Developer Hackathon: ACT III · Track 1 Intelligent Industry</span>
+    <span>MIT licensed · Sample case data, companies and people are fictional · AI output is a draft for engineer review</span>
+  </div>
+</footer>
+<script type="module" src="/static/js/app.js"></script>
+</body>
+</html>
