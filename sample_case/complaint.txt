@@ -1,0 +1,21 @@
+From: Giulia Ferri <g.ferri@ardena-motors.example>
+To: Supplier Quality - Valtek Components <quality@valtek.example>
+Date: Mon, 12 Oct 2026 08:40 +0200
+Subject: 8D REQUEST - AH-2207 water pump housing - bore oversize - 37 parts rejected
+
+Dear Valtek team,
+
+during bearing press-fit at our station OP40 (Plant Torino Nord) we rejected 37 water pump housings,
+part number AH-2207, because the press-fit force was below the minimum of 4.2 kN. Our CMM measured
+the bearing bore at 42.027-42.031 mm against the drawing requirement 42.000 +0.025/0 mm.
+
+The rejected parts come from your lots L261008-B and L261009-A (delivery note DN-55812, received on
+10 Oct 2026). A photo of one rejected housing is attached.
+
+Please:
+- confirm containment (D3) within 24 hours, including stock in transit and at your plant;
+- send the 8D report with the root cause (D4) within 10 working days.
+
+Regards,
+Giulia Ferri
+Supplier Quality Engineer - Ardena Motors S.p.A.

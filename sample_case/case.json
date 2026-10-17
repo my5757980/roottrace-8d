@@ -1,0 +1,34 @@
+{
+  "title": "AH-2207 water pump housing: bearing bore oversize",
+  "customer": "Ardena Motors S.p.A. (fictional)",
+  "supplier": "Valtek Components (fictional)",
+  "part_number": "AH-2207",
+  "part_name": "Water pump housing",
+  "machine": "CNC-07",
+  "spec": {
+    "characteristic": "Bearing bore diameter",
+    "unit": "mm",
+    "lsl": 42.0,
+    "usl": 42.025,
+    "target": 42.0125
+  },
+  "columns": {
+    "timestamp": "timestamp",
+    "lot": "lot",
+    "value": "bore_diameter_mm",
+    "parameters": [
+      "spindle_temp_c",
+      "coolant_conc_pct",
+      "tool_life_count"
+    ]
+  },
+  "baseline_end": "2026-10-04 06:00",
+  "files": {
+    "complaint": "complaint.txt",
+    "images": [
+      "defect_photo.jpg"
+    ],
+    "process": "process_data.csv",
+    "maintenance": "maintenance_log.csv"
+  }
+}

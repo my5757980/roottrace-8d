@@ -1,0 +1,12 @@
+timestamp,machine,type,shift,author,description
+2026-09-29 07:10,CNC-07,PM,A,M. Rossi,"Weekly PM: way lube level OK, chip conveyor cleaned."
+2026-10-01 10:30,CNC-07,CALIBRATION,A,QA Lab,"Bore air gauge AG-3 mastered with setting ring 42.0125 mm, calibration OK."
+2026-10-02 22:40,CNC-07,SHIFT_HANDOVER,C,D. Bianchi,"No issues. Bore SPC sheet in control."
+2026-10-05 09:00,CNC-07,PM,A,M. Rossi,"Spindle bearing temperature check: 31 °C, within limits."
+2026-10-06 18:15,CNC-07,SHIFT_HANDOVER,B,L. Conti,"Tool life counter BB-17 above 7,000 parts; replacement planned at 8,000."
+2026-10-08 14:20,CNC-07,TOOL_CHANGE,B,L. Conti,"Boring bar BB-17 replaced with BB-18 (end of tool life). Diameter offset entered from presetter sheet."
+2026-10-08 14:45,CNC-07,FIRST_PIECE,B,L. Conti,"First-piece check after tool change done visually only - CMM queue busy. Production released."
+2026-10-08 22:05,CNC-07,SHIFT_HANDOVER,B,L. Conti,"Bore SPC: points above upper warning line. Waiting for quality engineer review; machine running."
+2026-10-09 22:10,CNC-07,COOLANT,C,S. Greco,"Coolant tank topped up with water; concentration not re-measured after refill."
+2026-10-10 06:05,CNC-07,SHIFT_HANDOVER,C,S. Greco,"Bore values high on SPC sheet, no stop. Lots L261009-C and L261010-A shipped to warehouse."
+2026-10-11 13:30,CNC-07,STOPPAGE,A,M. Rossi,"Chip conveyor jam cleared (15 min stop)."
