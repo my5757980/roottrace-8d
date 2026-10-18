@@ -45,7 +45,7 @@ def main() -> None:
         d.text((150, y), b, font=font(36), fill=(229, 231, 235))
     d.rounded_rectangle([115, 590, 720, 650], radius=30, fill=(17, 26, 46), outline=(225, 29, 46), width=3)
     d.ellipse([140, 610, 160, 630], fill=(225, 29, 46))
-    d.text((178, 600), "AI inference on AMD Instinct GPUs", font=font(30, True), fill="white")
+    d.text((178, 600), "AI inference on AMD GPUs · Token Factory", font=font(30, True), fill="white")
 
     # mini control chart from the sample data
     rows = list(csv.DictReader(open(ROOT / "sample_case" / "process_data.csv", encoding="utf-8")))

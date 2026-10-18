@@ -73,7 +73,7 @@ All AI inference runs on **AMD infrastructure** through one OpenAI-compatible cl
 
 You can point the client at either backend:
 
-- **AMD TokenFactory API**, the event's hosted inference on AMD Instinct GPUs
+- **AMD TokenFactory API**, the event's hosted inference on AMD GPUs
   (`notebooks.amd.com/tokenfactory`), or
 - **your own vLLM server on AMD Developer Cloud (Instinct MI300X, ROCm)**:
   `vllm serve <model> --api-key …`, base URL `http://<droplet-ip>:8000/v1`.
