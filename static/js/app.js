@@ -197,7 +197,7 @@ async function pollUntilDone() {
   state.polling = true;
   try {
     while (state.analysis?.status === "running") {
-      await sleep(800);
+      await sleep(1500);
       const a = await api.poll(state.case.id);
       state.analysis = a;
       state.report = a.report;
