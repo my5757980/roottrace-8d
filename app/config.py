@@ -76,6 +76,8 @@ class Settings:
     live_runs_per_ip: int
     live_window_s: int
     version: str = __version__
+    fast: RoleConfig | None = None  # optional quick model for extraction and drafting
+    live_step_budget_s: float = 100.0  # sample case: slower live steps fall back to the recorded AMD run
 
     @property
     def mode(self) -> str:
@@ -89,7 +91,11 @@ class Settings:
         return "mock"
 
     def role(self, name: str) -> RoleConfig:
-        return self.vision if name == "vision" else self.text
+        if name == "vision":
+            return self.vision
+        if name == "fast" and self.fast is not None and self.fast.ready:
+            return self.fast
+        return self.text
 
     @property
     def max_upload_bytes(self) -> int:
@@ -108,6 +114,7 @@ def load_settings() -> Settings:
         api_key=_env("AMD_VISION_API_KEY", text.api_key),
         model=_env("AMD_VISION_MODEL", text.model),
     )
+    fast = RoleConfig(base_url=text.base_url, api_key=text.api_key, model=_env("AMD_FAST_MODEL", text.model))
     mode = (_env("LLM_MODE", "auto") or "auto").lower()
     if mode not in {"auto", "live", "mock"}:
         mode = "auto"
@@ -127,4 +134,6 @@ def load_settings() -> Settings:
         max_upload_mb=max(1, _int("MAX_UPLOAD_MB", 10)),
         live_runs_per_ip=max(1, _int("LIVE_RUNS_PER_IP", 5)),
         live_window_s=max(60, _int("LIVE_WINDOW_S", 600)),
+        fast=fast,
+        live_step_budget_s=max(10.0, _float("LIVE_STEP_BUDGET_S", 100.0)),
     )

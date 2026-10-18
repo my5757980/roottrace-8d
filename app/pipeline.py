@@ -135,11 +135,15 @@ class _Runner:
             self.finish(st, "done", "cached", "Served from the recorded AMD run.")
             return got[0]
         try:
-            result, trace = await call()
+            budget = getattr(getattr(self.llm, "settings", None), "live_step_budget_s", None)
+            if self.case.is_sample and self.cached and budget:
+                result, trace = await asyncio.wait_for(call(), timeout=budget)
+            else:
+                result, trace = await call()
         except (LLMError, asyncio.TimeoutError) as exc:
             if isinstance(exc, LLMError) and exc.trace is not None:
                 self.a.trace.append(exc.trace)
-            reason = exc.code if isinstance(exc, LLMError) else "timeout"
+            reason = exc.code if isinstance(exc, LLMError) else "slow response"
             got = self._cached(name, schema) if self.case.is_sample else None
             if got is not None:
                 self.a.trace.append(got[1])
@@ -230,7 +234,7 @@ class _Runner:
         hyp_json = json.dumps([h.model_dump(exclude={"unsupported"}) for h in a.hypotheses], ensure_ascii=False)
 
         async def draft_call():
-            return await self.llm.chat_json("text", prompts.draft_8d_messages(context, block, hyp_json, evidence_block),
+            return await self.llm.chat_json("fast", prompts.draft_8d_messages(context, block, hyp_json, evidence_block),
                                             Draft8D, "draft_8d", max_tokens=MAX_TOKENS["draft_8d"])
 
         draft = await self.ai_step("draft_8d", Draft8D, draft_call)

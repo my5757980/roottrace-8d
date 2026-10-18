@@ -58,7 +58,7 @@ async function main() {
 
     <h2>Appendix: AI inference trace</h2>
     <div class="table-scroll"><table><tr><th>Step</th><th>Provider</th><th>Model</th><th>Source</th><th>Latency</th><th>Tokens in/out</th></tr>
-      ${(a.trace || []).map((t) => `<tr><td>${esc(t.step)}</td><td>${esc(t.provider)}</td><td>${esc(t.model)}</td><td>${esc(t.source)}${t.recorded_at ? " (recorded " + fmtT(t.recorded_at) + ")" : ""}</td>
+      ${(a.trace || []).map((t) => `<tr><td>${esc(t.step)}</td><td>${esc(t.provider)}</td><td>${esc(String(t.model).replace(/^[\w-]+\//, ""))}</td><td>${esc(t.source)}${t.recorded_at ? " (recorded " + fmtT(t.recorded_at) + ")" : ""}</td>
         <td>${(t.latency_ms / 1000).toFixed(1)} s</td><td>${t.prompt_tokens ?? "–"} / ${t.completion_tokens ?? "–"}</td></tr>`).join("")}
     </table></div>
     <div class="foot">Generated with RootTrace 8D. Statistics are computed deterministically; AI-written sections are drafts until approved by the responsible engineer. Run ${esc(a.run_id)} · mode ${esc(a.mode)}.</div>

@@ -133,7 +133,7 @@ validation and LLM client limits, plus one golden-path smoke test with the mock 
 - [X] T029 [US1] Implement `app/tools/record_sample_run.py`. It runs the live pipeline on the sample case and checks that every AI step is ok and there are no untraceable numbers. It writes `sample_case/cached_run.json` (recorded_at, provider, models and per-step result and trace) and prints a summary. It exits non-zero when a check fails
 - [ ] T030 [P] [US1] Write the `Dockerfile` (python:3.12-slim, a non-root user, pip install -r requirements.txt, copy app/static/sample_case, `CMD uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-7860}`, EXPOSE 7860) and verify `docker build`
 - [X] T031 [P] [US1] Write `README.md`: problem, solution, demo link placeholder, how AMD is used (TokenFactory or vLLM on MI300X, the trace), architecture diagram (text), quickstart (local, Docker, HF Space), env vars, recording the cached run, tests, the MIT license and a link to docs/hackathon/HACKATHON_BRIEF.md
-- [ ] T032 [US1] Record the cached AMD run with the real AMD key (`python -m app.tools.record_sample_run`) and commit `sample_case/cached_run.json` *(needs the AMD key from the user)*
+- [X] T032 [US1] Record the cached AMD run with the real AMD key (`python -m app.tools.record_sample_run`) and commit `sample_case/cached_run.json` *(needs the AMD key from the user)*
 - [ ] T033 [US1] Deploy to a Hugging Face Space (Docker SDK) with the secrets set, then verify quickstart §6 steps 1–5 and 7 on the public URL *(needs the user's HF account)*
 
 **Checkpoint**: MVP is live. The golden path works publicly with the AMD trace and the cached fallback.
@@ -168,10 +168,10 @@ validation and LLM client limits, plus one golden-path smoke test with the mock 
 ## Phase 6: Polish, Hardening and Submission Assets
 
 - [X] T041 [P] Add a per-IP throttle for live analyses (5 per 10 min, then serve cached for the sample case and 429 for custom cases) in `app/main.py`, with a small test
-- [ ] T042 [P] Write `docs/submission/SUBMISSION.md`: title (≤ 50 chars), short description (50–255), long description (600–2,000), track, tech tags and the "Additional info" text. Validate the lengths with `scripts/check_submission.py`
-- [ ] T043 [P] Write `docs/submission/VIDEO_SCRIPT.md`: a 3:30–4:30 script (problem 0:00–0:30, live demo 0:30–2:30, business case and TAM/revenue 2:30–3:30, competitors and roadmap 3:30–4:15) with a shot list
-- [ ] T044 [P] Build `docs/submission/slides.html` (9 slides: problem, user, solution, live demo screenshot, how it works on AMD, results/KPIs, market and revenue, competition and USP, roadmap and team) with print CSS so it exports to PDF
-- [ ] T045 [P] Generate `docs/submission/cover.png` (16:9, 1920×1080) with `scripts/make_cover.py` (Pillow)
+- [X] T042 [P] Write `docs/submission/SUBMISSION.md`: title (≤ 50 chars), short description (50–255), long description (600–2,000), track, tech tags and the "Additional info" text. Validate the lengths with `scripts/check_submission.py`
+- [X] T043 [P] Write `docs/submission/VIDEO_SCRIPT.md`: a 3:30–4:30 script (problem 0:00–0:30, live demo 0:30–2:30, business case and TAM/revenue 2:30–3:30, competitors and roadmap 3:30–4:15) with a shot list
+- [X] T044 [P] Build `docs/submission/slides.html` (9 slides: problem, user, solution, live demo screenshot, how it works on AMD, results/KPIs, market and revenue, competition and USP, roadmap and team) with print CSS so it exports to PDF
+- [X] T045 [P] Generate `docs/submission/cover.png` (16:9, 1920×1080) with `scripts/make_cover.py` (Pillow)
 - [ ] T046 Run the full test suite, a Docker build and the quickstart walk-through. Scan the repository and git history for secrets (`git grep -nE "(sk-|rc-|api[_-]?key\s*=\s*['\"][A-Za-z0-9])"`) and fix anything found
 - [ ] T047 Update the README with the live demo URL, a screenshot and the submission links
 

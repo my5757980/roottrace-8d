@@ -26,6 +26,7 @@ def complaint_facts_messages(complaint_text: str) -> list[dict]:
     }
     system = (SYSTEM_BASE + " Task: extract the key facts of a customer quality complaint. Return exactly one "
               "entry per fact name, in the listed order. Copy numbers, lot numbers and dates exactly as written. "
+              "Deadlines are often relative (e.g. 'containment within 24 hours', '8D within 10 working days'): report them. "
               "If a fact is not in the text, use value 'not stated' and an empty quote. Translate values to "
               "English if needed but keep the quote in the original language.\nJSON schema:\n"
               + json.dumps(schema, ensure_ascii=False))
@@ -81,7 +82,9 @@ def draft_8d_messages(context: str, containment_block: str, hypotheses_json: str
     system = (SYSTEM_BASE + " Task: draft an 8D report for the supplier quality engineer to review and sign. "
               "Rules: (1) Use only the evidence items, the containment facts and the hypotheses provided. "
               "(2) Cite the evidence IDs each section relies on in its 'evidence' list. "
-              "(3) Copy every number exactly as written in the evidence; never compute or estimate new numbers. "
+              "(3) Copy every number exactly as written in the evidence; never compute or estimate new numbers, and do not "
+              "invent quantities, sample sizes, durations or percentages (write 'agreed sample size', 'next production runs', "
+              "'agreed period' instead). "
               "(4) D3 MUST quarantine and sort exactly the suspect lots and time range from the containment facts, "
               "include stock at the plant, in transit and at the customer, and the customer notification. "
               "(5) D1: list roles only (quality engineer, production, maintenance, process engineering), no names. "

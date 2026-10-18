@@ -1,0 +1,289 @@
+{
+  "recorded_at": "2026-10-18T04:03:43+00:00",
+  "provider": "AMD Token Factory · AMD GPUs (Radeon Cloud)",
+  "models": {
+    "text": "Gemma-4-31B-IT",
+    "vision": "DeepSeek-V4-Flash-Vision-Exp"
+  },
+  "elapsed_seconds": 119.7,
+  "steps": {
+    "complaint_facts": {
+      "result": {
+        "facts": [
+          {
+            "name": "customer",
+            "value": "Ardena Motors S.p.A.",
+            "quote": "Ardena Motors S.p.A."
+          },
+          {
+            "name": "part_number",
+            "value": "AH-2207",
+            "quote": "part number AH-2207"
+          },
+          {
+            "name": "part_name",
+            "value": "water pump housing",
+            "quote": "water pump housings"
+          },
+          {
+            "name": "lots",
+            "value": "L261008-B, L261009-A",
+            "quote": "lots L261008-B and L261009-A"
+          },
+          {
+            "name": "defect_description",
+            "value": "bore oversize / press-fit force below minimum",
+            "quote": "bore oversize - 37 parts rejected... press-fit force was below the minimum of 4.2 kN"
+          },
+          {
+            "name": "quantity_affected",
+            "value": "37",
+            "quote": "rejected 37 water pump housings"
+          },
+          {
+            "name": "date_received",
+            "value": "10 Oct 2026",
+            "quote": "received on 10 Oct 2026"
+          },
+          {
+            "name": "response_deadline",
+            "value": "containment within 24 hours, 8D within 10 working days",
+            "quote": "confirm containment (D3) within 24 hours... send the 8D report with the root cause (D4) within 10 working days"
+          },
+          {
+            "name": "customer_measurement",
+            "value": "42.027-42.031 mm",
+            "quote": "Our CMM measured the bearing bore at 42.027-42.031 mm"
+          }
+        ],
+        "language": "en",
+        "summary": "Ardena Motors rejected 37 water pump housings (AH-2207) due to oversize bearing bores resulting in low press-fit force. Containment is required within 24 hours and a full 8D report within 10 working days."
+      },
+      "trace": {
+        "step": "complaint_facts",
+        "provider": "AMD Token Factory · AMD GPUs (Radeon Cloud)",
+        "model": "self-dploy/Gemma-4-31B-IT",
+        "source": "live",
+        "started_at": "2026-10-18T04:01:43.807582Z",
+        "latency_ms": 43375,
+        "prompt_tokens": 596,
+        "completion_tokens": 452,
+        "attempts": 1,
+        "status": "ok",
+        "error": null,
+        "recorded_at": null
+      }
+    },
+    "defect_vision": {
+      "result": {
+        "findings": [
+          {
+            "image_index": 0,
+            "defect_class": "dimensional_not_visual",
+            "confidence": "high",
+            "observations": [
+              "Image shows a top-down view of a circular machined part with a central bore and two smaller holes",
+              "A red REJECT tag indicates 'Lot L261009-A OP40 press-fit low'",
+              "No surface defects such as scratches, burrs, or cracks are visible in the image"
+            ],
+            "description": "The complaint is a bearing bore oversize (press-fit low), which is a dimensional deviation that cannot be visually confirmed from a photograph; no other visible defect is present.",
+            "retake_suggestion": "Provide a CMM or gauge measurement report for the bore diameter; a photo cannot confirm the oversize condition."
+          }
+        ]
+      },
+      "trace": {
+        "step": "defect_vision",
+        "provider": "AMD Token Factory · AMD GPUs (Radeon Cloud)",
+        "model": "self-dploy/DeepSeek-V4-Flash-Vision-Exp",
+        "source": "live",
+        "started_at": "2026-10-18T04:01:44.968530Z",
+        "latency_ms": 12391,
+        "prompt_tokens": 755,
+        "completion_tokens": 164,
+        "attempts": 1,
+        "status": "ok",
+        "error": null,
+        "recorded_at": null
+      }
+    },
+    "hypotheses": {
+      "result": {
+        "hypotheses": [
+          {
+            "rank": 1,
+            "category": "Machine",
+            "statement": "Incorrect diameter offset entered for boring bar BB-18 during tool change, causing an immediate shift to oversize dimensions.",
+            "supporting": [
+              "S4",
+              "P3",
+              "L6"
+            ],
+            "contradicting": [],
+            "confidence": "high",
+            "verification": "Compare the presetter sheet value for BB-18 against the actual offset value entered into CNC-07 on 2026-10-08 14:20."
+          },
+          {
+            "rank": 2,
+            "category": "Method",
+            "statement": "Failure to perform a dimensional first-piece inspection after tool change (visual check only) allowed the oversize parts to enter production.",
+            "supporting": [
+              "L7",
+              "S4",
+              "S6"
+            ],
+            "contradicting": [],
+            "confidence": "high",
+            "verification": "Review the first-piece inspection log for 2026-10-08 14:45 to confirm no CMM or air gauge measurements were recorded before release."
+          },
+          {
+            "rank": 3,
+            "category": "Man",
+            "statement": "Operators failed to stop production despite SPC warnings and high bore values, allowing non-conforming lots to be shipped to the warehouse.",
+            "supporting": [
+              "L8",
+              "L10",
+              "S7"
+            ],
+            "contradicting": [],
+            "confidence": "high",
+            "verification": "Interview operators L. Conti and S. Greco regarding the decision to continue production despite the SPC warnings noted in L8 and L10."
+          },
+          {
+            "rank": 4,
+            "category": "Material",
+            "statement": "Decrease in coolant concentration caused thermal expansion or lubrication failure leading to oversize bores.",
+            "supporting": [
+              "P2",
+              "L9"
+            ],
+            "contradicting": [
+              "S4",
+              "P1"
+            ],
+            "confidence": "low",
+            "verification": "Correlation analysis between coolant concentration levels and bore diameter measurements from 2026-10-09 22:30 onwards."
+          }
+        ]
+      },
+      "trace": {
+        "step": "hypotheses",
+        "provider": "AMD Token Factory · AMD GPUs (Radeon Cloud)",
+        "model": "self-dploy/Gemma-4-31B-IT",
+        "source": "live",
+        "started_at": "2026-10-18T04:02:27.184032Z",
+        "latency_ms": 16500,
+        "prompt_tokens": 2433,
+        "completion_tokens": 426,
+        "attempts": 1,
+        "status": "ok",
+        "error": null,
+        "recorded_at": null
+      }
+    },
+    "draft_8d": {
+      "result": {
+        "sections": [
+          {
+            "id": "D1",
+            "title": "D1 · Team",
+            "content": "- Quality engineer (8D owner, customer interface)\n- Production (shift B and C operators, first-piece and SPC monitoring)\n- Maintenance (machine repair, tool change support)\n- Process engineering (root cause analysis, corrective actions)",
+            "evidence": [
+              "L6",
+              "L7",
+              "L8",
+              "L10"
+            ]
+          },
+          {
+            "id": "D2",
+            "title": "D2 · Problem description (5W2H)",
+            "content": "- What: Bearing bore diameter oversize on water pump housing AH-2207; specification LSL 42.0 / USL 42.025 mm, target 42.0125 mm.\n- Where: Machined on CNC-07, bearing bore operation; customer Ardena Motors S.p.A. reported press-fit force below minimum of 4.2 kN.\n- When: Process shift detected 2026-10-08 14:30; customer received rejected parts on 10 Oct 2026.\n- Who: Operators on shift B and C; tool change performed by L. Conti on 2026-10-08 14:20.\n- Why it matters: 37 parts rejected by customer; press-fit force below minimum, affecting assembly integrity.\n- How detected: Customer CMM measured bore at 42.027-42.031 mm; internal SPC showed 98 of 672 samples out of specification.\n- How many: 37 parts rejected by customer; 98 samples out of specification in suspect range.",
+            "evidence": [
+              "S1",
+              "S4",
+              "S7",
+              "C5",
+              "C6",
+              "C9"
+            ]
+          },
+          {
+            "id": "D3",
+            "title": "D3 · Interim containment",
+            "content": "- Quarantine suspect lots L261008-B, L261008-C, L261009-A, L261009-B, L261009-C, L261010-A, L261010-B, L261010-C, L261011-A, L261011-B, L261011-C.\n- Suspect time range: 2026-10-08 14:00 to 2026-10-12 05:30; 176 samples in range, 98 out of specification.\n- Segregate stock at plant, in transit, and at customer; include all parts from suspect lots.\n- Notify customer Ardena Motors S.p.A. of containment and pending sort.\n- Perform 100% inspection of quarantined parts for bearing bore diameter; sort conforming from non-conforming.",
+            "evidence": [
+              "S8",
+              "C4",
+              "C8"
+            ]
+          },
+          {
+            "id": "D4",
+            "title": "D4 · Root cause (occurrence & escape)",
+            "content": "- Occurrence: Incorrect diameter offset entered for boring bar BB-18 during tool change on 2026-10-08 14:20, causing immediate shift to oversize (to be verified by comparing presetter sheet value against actual offset in CNC-07).\n- Escape: First-piece inspection after tool change was visual only; no dimensional measurement recorded, allowing oversize parts to enter production (to be verified by reviewing first-piece log for 2026-10-08 14:45).\n- Additional contributing factor: Operators continued production despite SPC warnings and high bore values, shipping non-conforming lots (to be verified by interviewing operators L. Conti and S. Greco).\n- Material hypothesis (coolant concentration) considered low confidence due to timing and contradicting evidence.",
+            "evidence": [
+              "S4",
+              "P3",
+              "L6",
+              "L7",
+              "L8",
+              "L10",
+              "P2"
+            ]
+          },
+          {
+            "id": "D5",
+            "title": "D5 · Permanent corrective actions",
+            "content": "- Process engineering: Implement verification step for tool offset entry against presetter sheet before production release.\n- Production: Require dimensional first-piece inspection (CMM or air gauge) after every tool change; visual check not acceptable.\n- Quality engineer: Update SPC reaction plan to mandate stop and review when Western Electric rules are violated.\n- Maintenance: Ensure coolant concentration is re-measured after any top-up and documented.",
+            "evidence": [
+              "L6",
+              "L7",
+              "S6",
+              "L9"
+            ]
+          },
+          {
+            "id": "D6",
+            "title": "D6 · Implementation & validation",
+            "content": "- Process engineering: Install offset verification step in CNC-07 work instruction; validate on next production runs.\n- Production: Train operators on mandatory dimensional first-piece inspection; verify compliance on next production runs.\n- Quality engineer: Update SPC reaction plan; verify effectiveness by monitoring capability on next production runs.\n- Acceptance: Achieve Cpk ≥ 1.33 on bearing bore diameter for ongoing production (target from S0).",
+            "evidence": [
+              "S0",
+              "S3",
+              "S5"
+            ]
+          },
+          {
+            "id": "D7",
+            "title": "D7 · Prevention",
+            "content": "- Update control plan and FMEA to include tool offset verification and mandatory dimensional first-piece inspection.\n- Implement SPC reaction plan with mandatory stop on rule violations; train all shifts.\n- Add coolant concentration check to standard work after any refill.\n- Conduct layered process audits to ensure adherence to new procedures.",
+            "evidence": [
+              "S6",
+              "L9",
+              "L10"
+            ]
+          },
+          {
+            "id": "D8",
+            "title": "D8 · Closure & recognition",
+            "content": "- 8D report to be reviewed and signed by supplier quality engineer.\n- Closure after customer acceptance of corrective actions and verification of effectiveness.\n- Recognize team contributions to containment and root cause analysis.",
+            "evidence": []
+          }
+        ]
+      },
+      "trace": {
+        "step": "draft_8d",
+        "provider": "AMD Token Factory · AMD GPUs (Radeon Cloud)",
+        "model": "self-dploy/DeepSeek-V4-Flash",
+        "source": "live",
+        "started_at": "2026-10-18T04:02:43.682929Z",
+        "latency_ms": 59780,
+        "prompt_tokens": 2935,
+        "completion_tokens": 1280,
+        "attempts": 1,
+        "status": "ok",
+        "error": null,
+        "recorded_at": null
+      }
+    }
+  }
+}

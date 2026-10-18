@@ -335,7 +335,7 @@ export function renderTrace(el, a, health) {
   el.innerHTML = h + `
     ${rows.length ? `<div class="table-wrap rwrap"><table class="rtable table-min"><thead><tr><th>Step</th><th class="hide-sm">Provider</th><th>Model</th><th>Source</th>
       <th class="num">Latency</th><th class="num">Tokens in / out</th><th class="num hide-sm">Attempts</th><th>Status</th></tr></thead><tbody>
-      ${rows.map((t) => `<tr>${td("Step", `<b>${esc(t.step.replaceAll("_", " "))}</b>`)}${td("Provider", esc(t.provider), "hide-sm")}${td("Model", esc(t.model), "mono")}
+      ${rows.map((t) => `<tr>${td("Step", `<b>${esc(t.step.replaceAll("_", " "))}</b>`)}${td("Provider", esc(t.provider), "hide-sm")}${td("Model", esc(String(t.model).replace(/^[\w-]+\//, "")), "mono")}
         ${td("Source", `${srcBadge(t.source)}${t.recorded_at ? ` <span class="chip">recorded ${fmtT(t.recorded_at)}</span>` : ""}`)}
         ${td("Latency", `${(t.latency_ms / 1000).toFixed(1)} s`, "num")}
         ${td("Tokens", `${t.prompt_tokens ?? "–"} / ${t.completion_tokens ?? "–"}`, "num")}${td("Attempts", t.attempts, "num hide-sm")}
