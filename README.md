@@ -61,7 +61,17 @@ first-piece check was "visual only". RootTrace 8D therefore tells the engineer t
 ## How AMD is used
 
 All AI inference runs on **AMD infrastructure** through one OpenAI-compatible client
-(`app/llm/client.py`). You can point it at either backend:
+(`app/llm/client.py`). The demo runs on the event's **AMD Token Factory** (team key,
+`https://developer.amd.com.cn/radeon/api/v1`, AMD GPUs):
+
+| Step | Model on AMD Token Factory |
+|------|----------------------------|
+| Complaint facts | **Gemma-4-31B-IT** (Google DeepMind) |
+| Root-cause hypotheses (6M) | **Gemma-4-31B-IT** |
+| Defect photo (vision) | DeepSeek-V4-Flash-Vision-Exp |
+| 8D draft D1–D8 | DeepSeek-V4-Flash |
+
+You can point the client at either backend:
 
 - **AMD TokenFactory API**, the event's hosted inference on AMD Instinct GPUs
   (`notebooks.amd.com/tokenfactory`), or

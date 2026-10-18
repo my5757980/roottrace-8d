@@ -20,7 +20,7 @@ In the sample case the customer names 2 lots. RootTrace finds the shift 10 minut
 Intelligent Industry
 
 ## Technology tags
-AMD Developer Cloud, AMD ROCm, AMD Instinct, AMD TokenFactory, vLLM, Gemma (if used for vision), Python, FastAPI, Hugging Face Spaces
+AMD Token Factory, AMD Developer Cloud, AMD ROCm, Gemma 4 (Gemma-4-31B-IT), DeepSeek V4, Python, FastAPI, Docker
 
 ## Participation mode
 Online
