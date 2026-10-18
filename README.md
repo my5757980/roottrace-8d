@@ -5,7 +5,7 @@
 Entry for the **AMD Developer Hackathon: ACT III** (lablab.ai), Track 1: *Intelligent Industry*.
 
 - **Live demo:** https://roottrace-8d-a18dc.containers.snapdeploy.app. It is on a free host that sleeps when idle, so the first visit can take about a minute to wake it.
-- **Video:** _<add link>_
+- **Video and submission:** [lablab.ai project page](https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii/roottrace-8d/roottrace-8d-complaint-to-8d-report-on-amd)
 - **Slides:** [docs/submission/RootTrace8D_slides.pdf](docs/submission/RootTrace8D_slides.pdf)
 
 ---

@@ -25,3 +25,6 @@ Thumbs.db
 
 # Browser automation artifacts (may contain page data)
 .playwright-mcp/
+
+# Demo video (uploaded to lablab, too large for git)
+docs/submission/*.mp4

@@ -43,19 +43,19 @@ Legend: ✅ done and verified · ⏳ to do before the deadline
 | Title (5–50) | ✅ | "RootTrace 8D: Complaint to 8D Report on AMD" (43) |
 | Short description (50–255) | ✅ | 226 characters (`SUBMISSION.md`) |
 | Long description (600–2000, ≥100 words) | ✅ | 1,363 characters, 222 words |
-| Categories / Event track / Technologies | ⏳ | Choose in the form: track **Intelligent Industry**; technologies AMD, Gemma, DeepSeek, Python, FastAPI, Docker |
+| Categories / Event track / Technologies | ✅ | Categories Automotive, Business, Productivity; track **Intelligent Industry**; technologies Token Factory, AMD Developer Cloud, AMD ROCm, Gemma |
 | Cover image (16:9) | ✅ | `docs/submission/cover.png` (1920×1080) |
 | Slide presentation (PDF) | ✅ | `docs/submission/RootTrace8D_slides.pdf` (10 slides: problem, user, solution, demo, AMD, trust, market, competition, roadmap) |
-| Video presentation (MP4/MOV, ≤300 MB, 3–5 min) | ⏳ | Script ready: `docs/submission/VIDEO_SCRIPT.md` |
-| Public GitHub repository | ⏳ | 9+ local commits ready; MIT license; README |
-| Demo application platform and URL | ⏳ | Dockerfile ready (Hugging Face Space, Docker SDK) |
+| Video presentation (MP4/MOV, ≤300 MB, 3–5 min) | ✅ | 4:11, 1080p, 12 MB, uploaded to lablab (live AMD run on the deployed app, narrated) |
+| Public GitHub repository | ✅ | https://github.com/my5757980/roottrace-8d (MIT, README) |
+| Demo application platform and URL | ✅ | Other (SnapDeploy, Docker): https://roottrace-8d-a18dc.containers.snapdeploy.app |
 
 ## 5. Rules
 
 | Rule | Status | Evidence |
 |---|---|---|
 | Original, open source, MIT | ✅ | `LICENSE` (MIT); self-generated sample data, photo and companies |
-| Containerized app with a README that runs | ✅ | `Dockerfile`, README quickstart (the local Docker build was skipped because the PC was low on memory; Hugging Face builds it) |
+| Containerized app with a README that runs | ✅ | `Dockerfile`, README quickstart; the same image builds and runs on SnapDeploy (live demo) and Back4app |
 | No secrets committed | ✅ | `.env` is gitignored; secret scan is clean |
 
 ## 6. Quality and UI
@@ -68,9 +68,7 @@ Legend: ✅ done and verified · ⏳ to do before the deadline
 | Responsive from 320 px to 2560 px | ✅ | Headless audit at 320, 375, 414, 768, 1024, 1280, 1440, 1920 and 2560: 0 horizontal overflow and 0 console errors, using the real AMD data |
 | Professional UI/UX | ✅ | Design system, icons, stacked tables on phones, sticky mobile action bar, accessible focus states, printable report |
 
-## Remaining before 15:00 PKT
+## Submitted
 
-1. Push to a public GitHub repo.
-2. Deploy the live demo (Hugging Face Space) with the AMD key as a secret.
-3. Record the 3–5 minute demo video (MP4).
-4. Fill in and submit the lablab form, then add the demo and video links to the README.
+Submitted on 2026-10-18 at about 06:38 UTC, before the 10:00 UTC deadline:
+https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii/roottrace-8d/roottrace-8d-complaint-to-8d-report-on-amd
