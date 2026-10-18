@@ -137,6 +137,7 @@ def normalize_image(data: bytes, filename: str, content_type: str | None, max_by
         raise IngestError(f"Image '{filename}' has an unsupported type; use JPG or PNG.", code="unsupported_type")
     try:
         img = Image.open(io.BytesIO(data))
+        img.draft("RGB", (MAX_IMAGE_SIDE, MAX_IMAGE_SIDE))  # JPEG: decode at reduced scale, keeps memory low
         img.load()
     except (UnidentifiedImageError, OSError) as exc:
         raise IngestError(f"Image '{filename}' could not be decoded; use a JPG or PNG photo.",
