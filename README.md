@@ -4,9 +4,9 @@
 
 Entry for the **AMD Developer Hackathon: ACT III** (lablab.ai), Track 1: *Intelligent Industry*.
 
-- **Live demo:** _<add the Hugging Face Space URL here>_
+- **Live demo:** https://roottrace-8d-a18dc.containers.snapdeploy.app. It is on a free host that sleeps when idle, so the first visit can take about a minute to wake it.
 - **Video:** _<add link>_
-- **Slides:** _<add link>_
+- **Slides:** [docs/submission/RootTrace8D_slides.pdf](docs/submission/RootTrace8D_slides.pdf)
 
 ---
 
@@ -141,20 +141,19 @@ Then record the cached AMD run once:
 python -m app.tools.record_sample_run     # writes sample_case/cached_run.json after checks pass
 ```
 
-### Docker / Hugging Face Space
+### Docker / container hosts
 
 ```bash
 docker build -t roottrace-8d .
 docker run --rm -p 7860:7860 --env-file .env roottrace-8d
 ```
 
-For a Hugging Face Space:
+To run it on a container host (the live demo uses SnapDeploy; a Hugging Face Docker Space also works):
 
-1. Create a Space with the **Docker** SDK.
-2. Push this repository to it.
-3. Add `AMD_LLM_API_KEY` as a secret, and the other `AMD_*` values as variables.
+1. Deploy this repository with its `Dockerfile`.
+2. Add `AMD_LLM_API_KEY` as a secret, and the other `AMD_*` values as variables. Set `LLM_MODE=live`.
 
-The container listens on port 7860.
+The container listens on `$PORT`, or on 7860 when `PORT` is not set.
 
 ## API
 

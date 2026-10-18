@@ -25,6 +25,15 @@ AMD Token Factory, AMD Developer Cloud, AMD ROCm, Gemma 4 (Gemma-4-31B-IT), Deep
 ## Participation mode
 Online
 
+## Demo application platform
+SnapDeploy (Docker container)
+
+## Demo application URL
+https://roottrace-8d-a18dc.containers.snapdeploy.app
+
+## Repository
+https://github.com/my5757980/roottrace-8d
+
 ## Additional information (scaling)
 - RootTrace runs as a single container. For plants with strict data rules it can run fully on-premises against a customer-owned AMD Instinct or Ryzen AI endpoint.
 - The next connectors are MES/QMS SPC feeds and customer supplier portals.
